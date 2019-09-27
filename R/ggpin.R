@@ -40,7 +40,7 @@ draw_key_pin <- function(data, params, size) {
 
 GeomPin <- ggproto("GeomPin", Geom,
                    required_aes = c("x", "y"),
-                   default_aes = c(colour = "darkred", width = 0.02),
+                   default_aes = c(colour = "darkred", size = 1),
                    draw_key = draw_key_pin,
 
                    draw_panel = function(data, panel_params, coord) {
@@ -51,7 +51,7 @@ GeomPin <- ggproto("GeomPin", Geom,
                      out <- grid::rasterGrob(image = mz_colourpin(farbe),
                                              x = coords[coords$colour == farbe,]$x,
                                              y = coords[coords$colour == farbe,]$y,
-                                             width = coords$width,
+                                             width = coords$size / 50,
                                              just = c("centre", "bottom"))
 
                      if (length(unique(coords$colour)) > 1)
@@ -60,7 +60,7 @@ GeomPin <- ggproto("GeomPin", Geom,
                                             grid::rasterGrob(image = mz_colourpin(f),
                                                              x = coords[coords$colour == f,]$x,
                                                              y = coords[coords$colour == f,]$y,
-                                                             width = coords$width,
+                                                             width = coords$size / 50,
                                                              just = c("centre", "bottom")))
                        }
 
@@ -92,7 +92,7 @@ geom_pin <- function(mapping = NULL, data = NULL, stat = "identity",
 
   GeomPin <- ggproto("GeomPin", Geom,
                      required_aes = c("x", "y"),
-                     default_aes = c(colour = "darkred", width = 0.02),
+                     default_aes = c(colour = "darkred", size = 1),
                      draw_key = draw_key_pin,
 
                      draw_panel = function(data, panel_params, coord) {
