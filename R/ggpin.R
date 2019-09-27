@@ -13,7 +13,7 @@
 mz_colourpin <- function(colour = "darkred", opacity = 50) {
 
   needle <- image_read(system.file("img", "pin-needle.png", package = "ggpin"))
-  ball <- image_read("img", "pin-ball.png", package = "ggpin")
+  ball <- image_read(system.file("img", "pin-ball.png", package = "ggpin"))
   col_ball <- image_colorize(ball, opacity = opacity, color = colour)
   col_pin <- image_append(image = c(col_ball, needle),
                           stack = TRUE)
